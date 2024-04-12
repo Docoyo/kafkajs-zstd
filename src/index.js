@@ -1,10 +1,6 @@
-const zstd = require("cppzst");
-const { promisify } = require("util");
+import {compress, decompress} from "cppzst";
 
-const compress = promisify(zstd.compress);
-const decompress = promisify(zstd.decompress);
-
-module.exports = (compressionParameters, decompressionParameters) => () => ({
+export default (compressionParameters, decompressionParameters) => () => ({
   async compress(encoder) {
     return compress(encoder.buffer, compressionParameters);
   },
@@ -12,4 +8,4 @@ module.exports = (compressionParameters, decompressionParameters) => () => ({
   async decompress(buffer) {
     return decompress(buffer, decompressionParameters);
   },
-});
+})

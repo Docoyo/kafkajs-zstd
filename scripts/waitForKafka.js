@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const execa = require("execa");
-const crypto = require("crypto");
+import execa from "execa";
+import crypto from "crypto";
 
 const secureRandom = (length = 10) =>
   crypto.randomBytes(length).toString("hex");
@@ -65,7 +65,7 @@ console.log(
     .commandSync(`docker-compose ps`, {
       shell: true,
     })
-    .stdout.toString("utf-8")
+    .stdout.toString("utf-8"),
 );
 
 console.log("\nCreating default topics...");

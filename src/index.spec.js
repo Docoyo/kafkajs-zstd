@@ -1,19 +1,17 @@
+import ZstdCodec from "./index";
+
+import waitFor from "kafkajs/src/utils/waitFor";
+
+import {CompressionCodecs, CompressionTypes, Kafka, logLevel} from "kafkajs";
+
 jest.setTimeout(10000);
 
-const {
-  Kafka,
-  CompressionTypes,
-  CompressionCodecs,
-  logLevel,
-} = require("kafkajs");
-const waitFor = require("kafkajs/src/utils/waitFor");
-const ZstdCodec = require("./index");
 
 const TOPIC_NAME = "topic-test";
 const MESSAGE = {
   key: Buffer.from("lorem"),
   value: Buffer.from(
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
   ),
   headers: {
     foo: "bar",
